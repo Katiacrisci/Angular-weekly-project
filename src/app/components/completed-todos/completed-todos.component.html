@@ -1,2 +1,12 @@
 <h2>Here is a list of your completed tasks: </h2>
-<p>completed-todos works!</p>
+<div class="overflow-y-auto mt-4 text-center mx-auto" style="height: 50vh; width: 40vw">
+  <div *ngIf="loading" class="spinner-border text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div *ngIf="!loading && todos.length === 0">Ops... no todos found</div>
+  <div class="text-center">
+    <div class="text-start">
+      <app-todo-detail [completedMode]="true" [todo]="todo" *ngFor="let todo of todos"></app-todo-detail>
+    </div>
+  </div>
+</div>

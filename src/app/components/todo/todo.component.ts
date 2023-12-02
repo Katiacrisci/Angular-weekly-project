@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { TodosService } from '../../services/todos.service';
-import { Todo } from '../../models/todo';
+import {Component} from '@angular/core';
+import {TodosService} from '../../services/todos.service';
 
 
 @Component({
@@ -10,11 +9,14 @@ import { Todo } from '../../models/todo';
 })
 export class TodoComponent {
   title!: string;
-  constructor(private service: TodosService) {}
-  addTodo(title: string) {
-    // this.service.addTodo()
-console.log(title)
+  addButtonInput: HTMLInputElement = document.getElementById("title") as HTMLInputElement;
 
+  constructor(private service: TodosService) {
+  }
+
+  addTodo(title: string) {
+    this.service.addTodo(title)
+      .then(resp => console.log(`Response from addTodo: ${resp}`))
   }
 
 }

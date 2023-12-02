@@ -1,1 +1,8 @@
-<h3>To-do list here</h3>
+<h3>To-do list</h3>
+<div class="overflow-y-auto mt-4 text-center mx-auto" style="height: 50vh; width: 50vw">
+  <div *ngIf="loading" class="spinner-border text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div *ngIf="!loading && todos.length === 0">Ops... no completed todos found</div>
+  <app-todo-detail [completedMode]="false" [todo]="todo" *ngFor="let todo of todos"></app-todo-detail>
+</div>
