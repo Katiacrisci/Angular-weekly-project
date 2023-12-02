@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Todo } from '../../models/todo';
-import { TodosService } from '../../services/todos.service';
+import {Component} from '@angular/core';
+import {Todo} from '../../models/todo';
+import {TodosService} from '../../services/todos.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,11 +9,10 @@ import { TodosService } from '../../services/todos.service';
 })
 export class TodoListComponent {
   todos: Todo[] = [];
-  constructor(private service: TodosService) {
-   this.todos = service.getTodos();
-   
 
+  constructor(private service: TodosService) {
+    this.service.getTodos()
+      .then(resp => this.todos = resp);
   }
-  
 
 }

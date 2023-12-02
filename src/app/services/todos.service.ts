@@ -9,16 +9,31 @@ export class TodosService {
 
   constructor() { }
 
-  addTodo(newTodoTitle: string) {
-    let newTodo = {id:this.todos.length + 1, title: newTodoTitle, completed: false}
-    this.todos.push(newTodo);
-
+  async delayResponse(fn: Function): Promise<any> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(fn()), 2000)
+    })
   }
 
-  getTodos() {
-    return this.todos; 
+  addTodo(newTodoTitle: string): Promise<any> {
+    return this.delayResponse(() => {
+      let newTodo = {id:this.todos.length + 1, title: newTodoTitle, completed: false}
+      this.todos.push(newTodo);
+    })
   }
 
-  deleteTodo() {}
+  getTodos(): Promise<any> {
+    return this.delayResponse(() => this.todos);
+  }
+
+  deleteTodo(todo: Todo): Promise<any> {
+    return this.delayResponse(() => {
+        let todoIndex: number = this.todos.indexOf(todo);
+
+        if (todoIndex === -1) return;
+
+        this.todos.splice(todoIndex, 1);
+    })
+  }
 
 }
