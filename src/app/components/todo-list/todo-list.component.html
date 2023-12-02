@@ -3,6 +3,6 @@
   <div *ngIf="loading" class="spinner-border text-dark" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-  <div *ngIf="!loading && todos.length === 0">Ops... no completed todos found</div>
+  <div *ngIf="!loading && todos.length === 0">Ops... no todos found</div>
   <app-todo-detail [completedMode]="false" [todo]="todo" *ngFor="let todo of todos"></app-todo-detail>
 </div>
